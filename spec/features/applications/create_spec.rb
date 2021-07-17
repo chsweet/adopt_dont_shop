@@ -8,34 +8,52 @@ RSpec.describe 'application creation' do
     @pet_3 = Pet.create!(adoptable: true, age: 4, breed: 'chihuahua', name: 'Elle', shelter_id: @shelter.id)
   end
 
-  it 'links to the new page from the pet index page' do
-    visit '/pets'
+  describe 'new application' do
+    it 'links to the new page from the pet index page' do
+      visit '/pets'
 
-    click_link 'Start an Application'
+      click_link 'Start an Application'
 
-    expect(current_path).to eq('/applications/new')
+      expect(current_path).to eq('/applications/new')
+    end
+
+    it 'can create a new application when all fields are filled out' do
+      visit '/applications/new'
+
+      fill_in 'Name', with: 'Ciara'
+      fill_in 'Address', with: '6831 39th Street'
+      fill_in 'City', with: 'Denver'
+      fill_in 'State', with: 'CO'
+      fill_in 'Zip Code', with: 80223
+      fill_in 'Tell us why you would make a good home', with: 'I will be the best dog mom!'
+      click_button 'Submit Application'
+
+      @application = Application.first
+
+      expect(current_path).to eq("/applications/#{@application.id}")
+      expect(page).to have_content("Ciara")
+      expect(page).to have_content("Address: 6831 39th Street")
+      expect(page).to have_content("City: Denver")
+      expect(page).to have_content("State: CO")
+      expect(page).to have_content("Zip Code: 80223")
+      expect(page).to have_content("Description: I will be the best dog mom!")
+      expect(page).to have_content("Application Status: In Progress")
+    end
   end
 
-  it 'can create a new application when all fields are filled out' do
-    visit '/applications/new'
+  describe 'not all fields are filled out' do
+    it 're-renders the new form' do
+      visit '/applications/new'
 
-    fill_in 'Name', with: 'Ciara'
-    fill_in 'Address', with: '6831 39th Street'
-    fill_in 'City', with: 'Denver'
-    fill_in 'State', with: 'CO'
-    fill_in 'Zip Code', with: 80223
-    fill_in 'Tell us why you would make a good home', with: 'I will be the best dog mom!'
-    click_button 'Submit Application'
+      fill_in 'Name', with: 'Ciara'
+      fill_in 'Address', with: '6831 39th Street'
+      fill_in 'Zip Code', with: 80223
+      fill_in 'Tell us why you would make a good home', with: 'I will be the best dog mom!'
+      click_button 'Submit Application'
 
-    @application = Application.all.first
-
-    expect(current_path).to eq("/applications/#{@application.id}")
-    expect(page).to have_content("Ciara")
-    expect(page).to have_content("Address: 6831 39th Street")
-    expect(page).to have_content("City: Denver")
-    expect(page).to have_content("State: CO")
-    expect(page).to have_content("Zip Code: 80223")
-    expect(page).to have_content("Description: I will be the best dog mom!")
-    expect(page).to have_content("Application Status: In Progress")
+      expect(page).to have_current_path('/applications/new')
+      expect(page).to have_content("Error: City can't be blank, State can't be blank")
+    end
   end
+
 end
