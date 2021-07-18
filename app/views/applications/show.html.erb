@@ -1,16 +1,21 @@
-<section = id="Add a Pet to this Application" >
-  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
-    <%= f.label :search, "Search by pet name:" %>
-    <%= f.text_field :search %>
-    <%= f.submit "Search" %>
-  <% end %>
-</section>
+<h2>Add a Pet to this Application</h2>
+<%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+  <%= f.label :search, "Search by pet name:" %>
+  <%= f.text_field :search %>
+  <%= f.submit "Search" %>
+<% end %>
+
 <br>
+
 <% if @searched_pets.any? == true %>
   <% @searched_pets.each do |pet| %>
-    <%= pet.name %> <%= button_to "Adopt this Pet", "/applications/#{@application.id}", method: :patch%>
-  <% end %>
+    <section id= "searched_pets-<%= pet.id %>" >
+      <%= pet.name %>
+      <%= button_to "Adopt this Pet", "/applications/#{@application.id}?pet_id=#{pet.id}", method: :patch%>
+      <% end %>
+  </section>
 <% end %>
+
 
 <h1><%= @application.name %></h1>
 <h3>Address: <%= @application.address %></h3>

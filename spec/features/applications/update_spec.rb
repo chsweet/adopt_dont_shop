@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'the applications show' do
+RSpec.describe 'the applications updates' do
   before :each do
     @shelter = Shelter.create(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
     @pet_1 = Pet.create!(adoptable: true, age: 1, breed: 'sphynx', name: 'Lucille Bald', shelter_id: @shelter.id)
@@ -15,41 +15,27 @@ RSpec.describe 'the applications show' do
     PetApplication.create!(pet: @pet_3, application: @application_1)
   end
 
-  it 'displays the applicant with all attributes and pet names' do
+  it 'displays button next to searched pets' do
     visit "/applications/#{@application_1.id}"
 
-    expect(page).to have_content("#{@application_1.name}")
-    expect(page).to have_content("Address: #{@application_1.address}")
-    expect(page).to have_content("City: #{@application_1.city}")
-    expect(page).to have_content("State: #{@application_1.state}")
-    expect(page).to have_content("Zip Code: #{@application_1.zip_code}")
-    expect(page).to_not have_content("#{@pet_1.name}")
-    find_link("#{@pet_2.name}")
-    find_link("#{@pet_3.name}")
-    expect(page).to have_content("Application Status: #{@application_1.status}")
-  end
-
-  it 'had link to pet show page from pet name' do
-    visit "/applications/#{@application_1.id}"
-
-    click_link "Lobster"
-
-    expect(current_path).to eq("/pets/#{@pet_2.id}")
-  end
-
-  it 'has a text box to filter results by keyword' do
-    visit "/applications/#{@application_1.id}"
-
-    expect(page).to have_button("Search")
-  end
-
-  it 'lists partial matches of search results' do
-    visit "/applications/#{@application_1.id}"
-
-    fill_in 'Search by pet name:', with: "Lucille"
+    fill_in 'Search by pet name:', with: "Miley"
     click_on("Search")
 
-    expect(current_path).to eq("/applications/#{@application_1.id}")
-    expect(@pet_1.name).to appear_before(@pet_3.name)
+    expect(page).to have_button("Adopt this Pet")
   end
+
+  it 'add pet to pets list on the application when button selected' do
+    visit "/applications/#{@application_1.id}"
+
+    fill_in 'Search by pet name:', with: "Miley"
+    click_on("Search")
+
+    within("#searched_pets-#{@pet_4.id}") do
+      click_button('Adopt this Pet')
+    end
+    save_and_open_page
+    expect(current_path).to eq("/applications/#{@application_1.id}")
+    find_link("#{@pet_4.name}")
+  end
+
 end
