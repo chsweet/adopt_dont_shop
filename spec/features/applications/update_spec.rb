@@ -33,9 +33,24 @@ RSpec.describe 'the applications updates' do
     within("#searched_pets-#{@pet_4.id}") do
       click_button('Adopt this Pet')
     end
-    save_and_open_page
+
     expect(current_path).to eq("/applications/#{@application_1.id}")
     find_link("#{@pet_4.name}")
+  end
+
+  it 'displays a "Submit Application" button when application has pets' do
+    visit "/applications/#{@application_1.id}"
+
+    expect(page).to have_button("Submit Application")
+  end
+
+  it 'updates application to "Pending" when the "Submit Application" is pushed' do
+    visit "/applications/#{@application_1.id}"
+
+    click_button('Submit Application')
+
+    expect(current_path).to eq("/applications/#{@application_1.id}")
+    expect(page).to have_content("Application Status: Pending")
   end
 
 end
