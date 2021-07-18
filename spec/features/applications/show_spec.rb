@@ -10,6 +10,8 @@ RSpec.describe 'the applications show' do
 
 
     @application_1 = Application.create!(name: 'Ashley', address: '1215 Perrine', city: 'Rawlins', state: 'WY', zip_code: 82301, description: 'I want a puppy', status: 'In Progress')
+    @application_2 = Application.create!(name: 'Sarah', address: '8734 Drive Dr', city: 'Denver', state: 'CO', zip_code: 80221, description: 'I love dogs!', status: 'In Progress')
+
 
     PetApplication.create!(pet: @pet_2, application: @application_1)
     PetApplication.create!(pet: @pet_3, application: @application_1)
@@ -28,7 +30,7 @@ RSpec.describe 'the applications show' do
     find_link("#{@pet_3.name}")
     expect(page).to have_content("Application Status: #{@application_1.status}")
   end
-
+  #User story 3
   it 'had link to pet show page from pet name' do
     visit "/applications/#{@application_1.id}"
 
@@ -36,13 +38,13 @@ RSpec.describe 'the applications show' do
 
     expect(current_path).to eq("/pets/#{@pet_2.id}")
   end
-
+  #User story 6
   it 'has a text box to filter results by keyword' do
     visit "/applications/#{@application_1.id}"
 
     expect(page).to have_button("Search")
   end
-
+  #User story 6
   it 'lists partial matches of search results' do
     visit "/applications/#{@application_1.id}"
 
@@ -51,5 +53,11 @@ RSpec.describe 'the applications show' do
 
     expect(current_path).to eq("/applications/#{@application_1.id}")
     expect(@pet_1.name).to appear_before(@pet_3.name)
+  end
+  #User story 9
+  it 'does not display "Submit Application" button when no pets are on the application' do
+    visit "/applications/#{@application_2.id}"
+
+    expect(page).to_not have_button("Submit Application")
   end
 end
