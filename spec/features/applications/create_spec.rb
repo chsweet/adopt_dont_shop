@@ -29,7 +29,8 @@ RSpec.describe 'application creation' do
 
       click_button 'Submit Application'
 
-      @application = Application.first
+
+      @application = Application.last
 
       expect(current_path).to eq("/applications/#{@application.id}")
       expect(page).to have_content("Ciara")

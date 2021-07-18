@@ -50,7 +50,7 @@ RSpec.describe 'the applications updates' do
 
     fill_in "Tell us why you would be a good pet owner", with: 'I will be the best pet parent'
     click_button('Submit Application')
-save_and_open_page
+
     expect(current_path).to eq("/applications/#{@application_1.id}")
     expect(page).to have_content("Description: I will be the best pet parent")
     expect(page).to have_content("Application Status: Pending")
