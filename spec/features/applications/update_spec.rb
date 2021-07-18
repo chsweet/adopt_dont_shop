@@ -9,7 +9,7 @@ RSpec.describe 'the applications updates' do
     @pet_4 = Pet.create!(adoptable: true, age: 1, breed: 'retriever/mix', name: 'Miley', shelter_id: @shelter.id)
 
 
-    @application_1 = Application.create!(name: 'Ashley', address: '1215 Perrine', city: 'Rawlins', state: 'WY', zip_code: 82301, description: 'I want a puppy', status: 'In Progress')
+    @application_1 = Application.create!(name: 'Ashley', address: '1215 Perrine', city: 'Rawlins', state: 'WY', zip_code: 82301, status: 'In Progress')
 
     PetApplication.create!(pet: @pet_2, application: @application_1)
     PetApplication.create!(pet: @pet_3, application: @application_1)
@@ -41,15 +41,18 @@ RSpec.describe 'the applications updates' do
   it 'displays a "Submit Application" button when application has pets' do
     visit "/applications/#{@application_1.id}"
 
+    expect(page).to have_content("Tell us why you would be a good pet owner")
     expect(page).to have_button("Submit Application")
   end
   #User story 8
   it 'updates application to "Pending" when the "Submit Application" is pushed' do
     visit "/applications/#{@application_1.id}"
 
+    fill_in "Tell us why you would be a good pet owner", with: 'I will be the best pet parent'
     click_button('Submit Application')
-
+save_and_open_page
     expect(current_path).to eq("/applications/#{@application_1.id}")
+    expect(page).to have_content("Description: I will be the best pet parent")
     expect(page).to have_content("Application Status: Pending")
   end
 
