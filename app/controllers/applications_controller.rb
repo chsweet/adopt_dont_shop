@@ -1,10 +1,13 @@
 class ApplicationsController < ApplicationController
 
-  def index
-  end
-
   def show
     @application = Application.find(params[:id])
+
+    if params[:search].present?
+      @searched_pets = Pet.search(params[:search])
+    else
+      @searched_pets = []
+    end
   end
 
   def new
@@ -18,6 +21,19 @@ class ApplicationsController < ApplicationController
     else
       redirect_to '/applications/new'
       flash[:alert] = "Error: #{error_message(application.errors)}"
+    end
+  end
+
+  def update
+    application = Application.find(params[:id])
+
+    if params[:pet_id]
+      pet = Pet.find(params[:pet_id])
+      PetApplication.create(pet: pet, application: application)
+      redirect_to "/applications/#{application.id}"
+    elsif params[:status]
+      application.update(status: params[:status])
+      redirect_to "/applications/#{application.id}"
     end
   end
 

@@ -32,7 +32,7 @@ During your Check In, you should be prepared to review your database schema for 
 
 ## Evaluation
 
-Before your evaluation, choose 2 user stories to present in a small group. Try to pick user stories that you think will deliever the highest value in terms of feedback from the instructor and peers. 
+Before your evaluation, choose 2 user stories to present in a small group. Try to pick user stories that you think will deliever the highest value in terms of feedback from the instructor and peers.
 
 During the evaluation, you will present your user story:
 
@@ -45,7 +45,7 @@ During the evaluation, you will present your user story:
 ## Deploy
 
 ```
-[ ] done
+[X] done
 
 Deploy your application to Heroku
 
@@ -63,8 +63,8 @@ Use these guides: https://devcenter.heroku.com/articles/getting-started-with-rai
 Visitors to the site will be able to create applications to adopt pets. An application has many pets. Pets can have many applications.
 
 ```
-[ ] done
-
+[X] done
+User Story 3
 Application Show Page
 
 As a visitor
@@ -78,10 +78,10 @@ Then I can see the following:
 ```
 
 ```
-[ ] done
+[X] done
 
 Starting an Application
-
+User Story 4
 As a visitor
 When I visit the pet index page
 Then I see a link to "Start an Application"
@@ -100,8 +100,8 @@ And I see an indicator that this application is "In Progress"
 ```
 
 ```
-[ ] done
-
+[X] done
+User Story 5
 Starting an Application, Form not Completed
 
 As a visitor
@@ -113,8 +113,8 @@ And I see a message that I must fill in those fields.
 ```
 
 ```
-[ ] done
-
+[X] done
+User Story 6
 Searching for Pets for an Application
 
 As a visitor
@@ -129,8 +129,8 @@ And under the search bar I see any Pet whose name matches my search
 ```
 
 ```
-[ ] done
-
+[X] done
+User Story 7
 Add a Pet to an Application
 
 As a visitor
@@ -144,8 +144,8 @@ And I see the Pet I want to adopt listed on this application
 ```
 
 ```
-[ ] done
-
+[X] done
+User Story 8
 Submit an Application
 
 As a visitor
@@ -162,8 +162,8 @@ And I do not see a section to add more pets to this application
 ```
 
 ```
-[ ] done
-
+[X] done
+User Story 9
 No Pets on an Application
 
 As a visitor
