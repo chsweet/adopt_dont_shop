@@ -14,7 +14,7 @@ RSpec.describe 'the applications updates' do
     PetApplication.create!(pet: @pet_2, application: @application_1)
     PetApplication.create!(pet: @pet_3, application: @application_1)
   end
-
+  #User story 7
   it 'displays button next to searched pets' do
     visit "/applications/#{@application_1.id}"
 
@@ -23,7 +23,7 @@ RSpec.describe 'the applications updates' do
 
     expect(page).to have_button("Adopt this Pet")
   end
-
+  #User story 7
   it 'add pet to pets list on the application when button selected' do
     visit "/applications/#{@application_1.id}"
 
@@ -37,13 +37,13 @@ RSpec.describe 'the applications updates' do
     expect(current_path).to eq("/applications/#{@application_1.id}")
     find_link("#{@pet_4.name}")
   end
-
+ #User story 8
   it 'displays a "Submit Application" button when application has pets' do
     visit "/applications/#{@application_1.id}"
 
     expect(page).to have_button("Submit Application")
   end
-
+  #User story 8
   it 'updates application to "Pending" when the "Submit Application" is pushed' do
     visit "/applications/#{@application_1.id}"
 

@@ -9,6 +9,7 @@ RSpec.describe 'application creation' do
   end
 
   describe 'new application' do
+    #User story 4
     it 'links to the new page from the pet index page' do
       visit '/pets'
 
@@ -16,7 +17,7 @@ RSpec.describe 'application creation' do
 
       expect(current_path).to eq('/applications/new')
     end
-
+    #User story 4
     it 'can create a new application when all fields are filled out' do
       visit '/applications/new'
 
@@ -40,7 +41,7 @@ RSpec.describe 'application creation' do
       expect(page).to have_content("Application Status: In Progress")
     end
   end
-
+  #User story 5
   describe 'not all fields are filled out' do
     it 're-renders the new form' do
       visit '/applications/new'
