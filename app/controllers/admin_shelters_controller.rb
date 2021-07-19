@@ -1,5 +1,5 @@
 class AdminSheltersController < ApplicationController
   def index
-    # require "pry"; binding.pry
+    @ordered_shelters = Shelter.order_alphabetical
   end
 end

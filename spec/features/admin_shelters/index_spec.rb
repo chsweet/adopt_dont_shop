@@ -28,9 +28,13 @@ RSpec.describe 'the admin shelters index' do
 
   it 'displays all shelters in reverse alphabetical order by name' do
     visit '/admin/shelters'
+    @shelter_3 = Shelter.create(name: 'All Dogs Need Homes', city: 'Rapid City, SD', foster_program: true, rank: 9)
+    @shelter_2 = Shelter.create(name: 'Dane Rescue', city: 'Denver CO', foster_program: false, rank: 9)
+    @shelter_1 = Shelter.create(name: 'Mystery Building', city: 'Irvine CA', foster_program: true, rank: 9)
 
     expect(@shelter_1.name).to appear_before(@shelter_3.name)
-    expect(@shelter_2.name).to_not appear_before(@shelter_3.name)
+    expect(@shelter_2.name).to_not appear_before(@shelter_1.name)
+    expect(@shelter_3.name).to_not appear_before(@shelter_2.name)
   end
 
 end
