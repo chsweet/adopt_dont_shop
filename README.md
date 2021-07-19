@@ -177,8 +177,8 @@ Then I do not see a section to submit my application
 These stories emphasize key database concepts
 
 ```
-[ ] done
-
+[X] done
+User story 10
 Partial Matches for Pet Names
 
 As a visitor
@@ -189,8 +189,8 @@ For example, if I search for "fluff", my search would match pets with names "flu
 ```
 
 ```
-[ ] done
-
+[X] done
+User story 11
 Case Insensitive Matches for Pet Names
 
 As a visitor
@@ -204,7 +204,8 @@ For example, if I search for "fluff", my search would match pets with names "Flu
 SQL Only Story
 
 For this story, you should write your queries in raw sql. You can use the ActiveRecord find_by_sql method to execute raw sql queries: https://guides.rubyonrails.org/active_record_querying.html#finding-by-sql
-
+[ ] done
+User story 12
 Admin Shelters Index
 
 As a visitor
@@ -214,7 +215,8 @@ Then I see all Shelters in the system listed in reverse alphabetical order by na
 
 ```
 For this story, you should fully leverage ActiveRecord methods in your query.
-
+[ ] done
+User story 13
 Shelters with Pending Applications
 
 As a visitor
@@ -231,7 +233,7 @@ For this set of stories, we will be making routes that begin with '/admin'. This
 
 ```
 [ ] done
-
+User story 14
 Approving a Pet for Adoption
 
 As a visitor
@@ -245,7 +247,7 @@ And instead I see an indicator next to the pet that they have been approved
 
 ```
 [ ] done
-
+User story 15
 Rejecting a Pet for Adoption
 
 As a visitor
@@ -258,6 +260,7 @@ And instead I see an indicator next to the pet that they have been rejected
 ```
 
 ```
+User story 16
 Approved/Rejected Pets on one Application do not affect other Applications
 
 As a visitor
@@ -275,7 +278,7 @@ Once all pets on an application have been marked either accepted or rejected, th
 
 ```
 [ ] done
-
+User story 17
 All Pets Accepted on an Application
 
 As a visitor
@@ -287,7 +290,7 @@ And I see the application's status has changed to "Approved"
 
 ```
 [ ] done
-
+User story 18
 One or More Pets Rejected on an Application
 
 As a visitor
@@ -299,6 +302,8 @@ And I see the application's status has changed to "Rejected"
 ```
 
 ```
+[ ] done
+User story 19
 Application Approval makes Pets not adoptable
 
 As a visitor
@@ -309,9 +314,9 @@ Then I see that those pets are no longer "adoptable"
 ```
 
 ```
-Pets can only have one approved application on them at any time
-
 [ ] done
+User story 20
+Pets can only have one approved application on them at any time
 
 As a visitor
 When a pet has an "Approved" application on them
@@ -330,7 +335,8 @@ These stories emphasize SQL and ActiveRecord concepts.
 SQL Only Story
 
 For this story, you should write your queries in raw sql. You can use the ActiveRecord find_by_sql method to execute raw sql queries: https://guides.rubyonrails.org/active_record_querying.html#finding-by-sql
-
+[ ] done
+User story 21
 Admin Shelters Show Page
 
 As a visitor
@@ -345,6 +351,8 @@ NOTE: Your query should only return the necessary data to complete the story
 For the following stories, you should fully leverage ActiveRecord methods in your queries.
 
 ```
+[ ] done
+User story 22
 Shelters with Pending Applications Listed Alphabetically
 
 As a visitor
@@ -354,6 +362,8 @@ Then I see all those shelters are listed alphabetically
 ```
 
 ```
+[ ] done
+User story 23
 Admin Shelters Show Page Links
 
 As a visitor
@@ -364,6 +374,8 @@ Then I am taken to that shelter's admin show page
 ```
 
 ```
+[ ] done
+User story 24
 Average Pet Age
 
 As a visitor
@@ -373,6 +385,8 @@ And in that section I see the average age of all adoptable pets for that shelter
 ```
 
 ```
+[ ] done
+User story 25
 Count of Adoptable Pets
 
 As a visitor
@@ -382,6 +396,8 @@ And in that section I see the number of pets at that shelter that are adoptable
 ```
 
 ```
+[ ] done
+User story 26
 Count of Pets that have been Adopted
 
 As a visitor
@@ -393,6 +409,8 @@ Note: A Pet has been adopted from a shelter if they are part of an approved appl
 ```
 
 ```
+[ ] done
+User story 27
 Action Required
 
 As a visitor
@@ -402,6 +420,8 @@ In that section, I see a list of all pets for this shelter that have a pending a
 ```
 
 ```
+[ ] done
+User story 28
 Action Required Links to Application Show Page
 
 As a visitor
