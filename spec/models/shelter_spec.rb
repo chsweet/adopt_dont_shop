@@ -24,33 +24,39 @@ RSpec.describe Shelter, type: :model do
   end
 
   describe 'class methods' do
-    describe '#search' do
+    describe '::search' do
       it 'returns partial matches' do
         expect(Shelter.search("Fancy")).to eq([@shelter_3])
       end
     end
 
-    describe '#order_by_recently_created' do
+    describe '::order_by_recently_created' do
       it 'returns shelters with the most recently created first' do
         expect(Shelter.order_by_recently_created).to eq([@shelter_3, @shelter_2, @shelter_1])
       end
     end
 
-    describe '#order_by_number_of_pets' do
+    describe '::order_by_number_of_pets' do
       it 'orders the shelters by number of pets they have, descending' do
         expect(Shelter.order_by_number_of_pets).to eq([@shelter_1, @shelter_3, @shelter_2])
+      end
+    end
+
+    describe '::order_alphabetical' do
+      it 'it returns shelters in reverse alphabetical order by name' do
+      expect(Shelter.order_alphabetical).to eq([@shelter_2, @shelter_3, @shelter_1])
       end
     end
   end
 
   describe 'instance methods' do
-    describe '.adoptable_pets' do
+    describe '#adoptable_pets' do
       it 'only returns pets that are adoptable' do
         expect(@shelter_1.adoptable_pets).to eq([@pet_2, @pet_4])
       end
     end
 
-    describe '.alphabetical_pets' do
+    describe '#alphabetical_pets' do
       it 'returns pets associated with the given shelter in alphabetical name order' do
         expect(@shelter_1.alphabetical_pets).to eq([@pet_4, @pet_2])
       end
@@ -62,7 +68,7 @@ RSpec.describe Shelter, type: :model do
       end
     end
 
-    describe '.pet_count' do
+    describe '#pet_count' do
       it 'returns the number of pets at the given shelter' do
         expect(@shelter_1.pet_count).to eq(3)
       end
