@@ -28,15 +28,15 @@ RSpec.describe 'the admin applications show' do
 
   it 'displays a button to approve the specific pet' do
     visit "/admin/applications/#{@application_1.id}"
-    
+
     within("#approve-#{@pet_1.id}") do
       click_button 'Approve Pet'
     end
 
     expect(current_path).to eq("/admin/applications/#{@application_1.id}")
-
-    within("#approve_pet.#{@pet_1.id}") do
-      expect(page).to_not find_button('Approve Pet')
+save_and_open_page
+    within("#approve-#{@pet_1.id}") do
+      # expect(page).to_not have_content('Approve Pet')
       expect(page).to have_content('Pet Approved')
     end
   end
