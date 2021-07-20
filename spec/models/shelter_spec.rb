@@ -21,6 +21,18 @@ RSpec.describe Shelter, type: :model do
     @pet_2 = @shelter_1.pets.create(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true)
     @pet_3 = @shelter_3.pets.create(name: 'Lucille Bald', breed: 'sphynx', age: 8, adoptable: true)
     @pet_4 = @shelter_1.pets.create(name: 'Ann', breed: 'ragdoll', age: 5, adoptable: true)
+
+    @application_1 = Application.create!(name: 'Ashley', address: '1215 Perrine', city: 'Rawlins', state: 'WY', zip_code: 82301, description: 'I will be the best pet parent', status: 'Pending')
+    @application_2 = Application.create!(name: 'Sarah', address: '8356 Drive Dr', city: 'Denver', state: 'CO', zip_code: 80203, status: 'In Progress')
+    @application_3 = Application.create!(name: 'Mona', address: '7230 Chipper Ln', city: 'Loveland', state: 'CO', zip_code: 80232, description: 'I love dog!!', status: 'Pending')
+    @application_4 = Application.create!(name: 'Sarah', address: '8356 Drive Dr', city: 'Denver', state: 'CO', zip_code: 80203, description: 'I will take the pup on lots of adventures', status: 'Pending')
+
+    PetApplication.create!(pet: @pet_1, application: @application_1)
+    PetApplication.create!(pet: @pet_2, application: @application_1)
+    PetApplication.create!(pet: @pet_4, application: @application_2)
+    PetApplication.create!(pet: @pet_2, application: @application_3)
+    PetApplication.create!(pet: @pet_1, application: @application_4)
+    PetApplication.create!(pet: @pet_3, application: @application_4)
   end
 
   describe 'class methods' do
@@ -47,6 +59,12 @@ RSpec.describe Shelter, type: :model do
       expect(Shelter.order_alphabetical).to eq([@shelter_2, @shelter_3, @shelter_1])
       end
     end
+
+    describe '::pending_applications'do
+      xit 'returns all shelters that have pending applications' do
+        expect(Shelter.pending_applications).to eq([@shelter_1, @shelter_2])
+      end
+    end
   end
 
   describe 'instance methods' do
@@ -62,7 +80,7 @@ RSpec.describe Shelter, type: :model do
       end
     end
 
-    describe '.shelter_pets_filtered_by_age' do
+    describe '#shelter_pets_filtered_by_age' do
       it 'filters the shelter pets based on given params' do
         expect(@shelter_1.shelter_pets_filtered_by_age(5)).to eq([@pet_4])
       end

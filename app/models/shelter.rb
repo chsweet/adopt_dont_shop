@@ -20,6 +20,11 @@ class Shelter < ApplicationRecord
     find_by_sql("SELECT * FROM shelters ORDER BY shelters.name DESC")
   end
 
+  # How to do it in ActiveRecord - join().where???
+  def self.pending_applications
+    require "pry"; binding.pry
+  end
+
   def pet_count
     pets.count
   end
