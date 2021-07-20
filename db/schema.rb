@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_030647) do
   end
 
   create_table "pet_applications", force: :cascade do |t|
-    t.string "pet_approved", default: "Pending"
+    t.string "status", default: "Pending"
     t.bigint "pet_id"
     t.bigint "application_id"
     t.datetime "created_at", null: false
