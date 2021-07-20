@@ -15,9 +15,6 @@
   <%= f.label :zip_code, 'Zip Code' %>
   <%= f.number_field :zip_code, maxlength: 5 %>
   <br>
-  <%= f.label :description, 'Tell us why you would make a good home' %>
-  <%= f.text_field :description %>
-  <br>
   <%= f.hidden_field :status, value: 'In Progress' %>
 
   <%= f.submit 'Submit Application' %>

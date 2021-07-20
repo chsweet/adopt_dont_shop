@@ -32,6 +32,7 @@ class ApplicationsController < ApplicationController
       PetApplication.create(pet: pet, application: application)
       redirect_to "/applications/#{application.id}"
     elsif params[:status]
+      application.update(description: params[:description])
       application.update(status: params[:status])
       redirect_to "/applications/#{application.id}"
     end

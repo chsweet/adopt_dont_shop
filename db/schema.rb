@@ -28,8 +28,11 @@ ActiveRecord::Schema.define(version: 2021_07_17_030647) do
   end
 
   create_table "pet_applications", force: :cascade do |t|
+    t.string "status", default: "Pending"
     t.bigint "pet_id"
     t.bigint "application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_pet_applications_on_application_id"
     t.index ["pet_id"], name: "index_pet_applications_on_pet_id"
   end

@@ -26,10 +26,11 @@ RSpec.describe 'application creation' do
       fill_in 'City', with: 'Denver'
       fill_in 'State', with: 'CO'
       fill_in 'Zip Code', with: 80223
-      fill_in 'Tell us why you would make a good home', with: 'I will be the best dog mom!'
+
       click_button 'Submit Application'
 
-      @application = Application.first
+
+      @application = Application.last
 
       expect(current_path).to eq("/applications/#{@application.id}")
       expect(page).to have_content("Ciara")
@@ -37,7 +38,7 @@ RSpec.describe 'application creation' do
       expect(page).to have_content("City: Denver")
       expect(page).to have_content("State: CO")
       expect(page).to have_content("Zip Code: 80223")
-      expect(page).to have_content("Description: I will be the best dog mom!")
+
       expect(page).to have_content("Application Status: In Progress")
     end
   end
@@ -49,7 +50,7 @@ RSpec.describe 'application creation' do
       fill_in 'Name', with: 'Ciara'
       fill_in 'Address', with: '6831 39th Street'
       fill_in 'Zip Code', with: 80223
-      fill_in 'Tell us why you would make a good home', with: 'I will be the best dog mom!'
+
       click_button 'Submit Application'
 
       expect(page).to have_current_path('/applications/new')

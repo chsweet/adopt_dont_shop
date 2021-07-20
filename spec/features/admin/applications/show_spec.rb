@@ -1,11 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PetApplication do
-  describe 'relationships' do
-    it { should belong_to :pet}
-    it { should belong_to :application}
-  end
-
+RSpec.describe 'the admin applications show' do
   before :each do
     @shelter_3 = Shelter.create(name: 'All Dogs Need Homes', city: 'Rapid City, SD', foster_program: true, rank: 9)
     @shelter_2 = Shelter.create(name: 'Dane Rescue', city: 'Denver CO', foster_program: false, rank: 9)
@@ -23,19 +18,27 @@ RSpec.describe PetApplication do
     @application_3 = Application.create!(name: 'Mona', address: '7230 Chipper Ln', city: 'Loveland', state: 'CO', zip_code: 80232, description: 'I love dog!!', status: 'Pending')
     @application_4 = Application.create!(name: 'Sarah', address: '8356 Drive Dr', city: 'Denver', state: 'CO', zip_code: 80203, description: 'I will take the pup on lots of adventures', status: 'Pending')
 
-    @pet_app_1 = PetApplication.create!(pet: @pet_1, application: @application_1)
-    @pet_app_2 = PetApplication.create!(pet: @pet_2, application: @application_1)
-    @pet_app_3 = PetApplication.create!(pet: @pet_4, application: @application_2)
-    @pet_app_4 = PetApplication.create!(pet: @pet_2, application: @application_3)
-    @pet_app_5 = PetApplication.create!(pet: @pet_1, application: @application_4)
-    @pet_app_6 = PetApplication.create!(pet: @pet_3, application: @application_4)
+    PetApplication.create!(pet: @pet_1, application: @application_1)
+    PetApplication.create!(pet: @pet_2, application: @application_1)
+    PetApplication.create!(pet: @pet_4, application: @application_2)
+    PetApplication.create!(pet: @pet_2, application: @application_3)
+    PetApplication.create!(pet: @pet_1, application: @application_4)
+    PetApplication.create!(pet: @pet_3, application: @application_4)
   end
 
-  describe 'class methods' do
-    describe '::find_pet_application' do
-      it 'returns the pet application' do
-        expect(PetApplication.find_pet_application(@pet_2.id, @application_1.id)).to eq(@pet_app_2)
-      end
+  it 'displays a button to approve the specific pet' do
+    visit "/admin/applications/#{@application_1.id}"
+
+    within("#approve-#{@pet_1.id}") do
+      click_button 'Approve Pet'
+    end
+
+    expect(current_path).to eq("/admin/applications/#{@application_1.id}")
+save_and_open_page
+    within("#approve-#{@pet_1.id}") do
+      # expect(page).to_not have_content('Approve Pet')
+      expect(page).to have_content('Pet Approved')
     end
   end
+
 end

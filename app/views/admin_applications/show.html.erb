@@ -1,0 +1,18 @@
+<h1><%= @application.name %></h1>
+<h3>Address: <%= @application.address %></h3>
+<h3>City: <%= @application.city %></h3>
+<h3>State: <%= @application.state %></h3>
+<h3>Zip Code: <%= @application.zip_code %></h3>
+<h3>Description: <%= @application.description %></h3>
+<h3>Pet(s):</h3>
+<% @pets.each do |pet| %>
+  <section id="approve-<%= pet.id %>">
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+    <% if @pet_applications.find_pet_application(pet.id, @application.id).status == "Approved" %>
+      <p>Pet Approved</p>
+    <% else %>
+      <%= button_to 'Approve Pet', "/admin/applications/#{@application.id}?approved=Approved&pet_id=#{pet.id}", method: :patch %>
+    <% end %>
+  </section>
+<% end %>
+<h3>Application Status: <%= @application.status %></h3>
