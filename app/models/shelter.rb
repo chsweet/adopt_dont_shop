@@ -23,6 +23,7 @@ class Shelter < ApplicationRecord
   # How to do it in ActiveRecord - join().where???
   def self.pending_applications
     require "pry"; binding.pry
+    # Playlist.select('playlists.name as p_name, artists.name as a_name').joins(songs: [:artist]).where("a_name = ?", 'Caamp")
   end
 
   def pet_count
