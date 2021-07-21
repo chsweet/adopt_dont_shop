@@ -25,7 +25,7 @@ RSpec.describe 'the admin shelters index' do
     PetApplication.create!(pet: @pet_1, application: @application_4)
     PetApplication.create!(pet: @pet_3, application: @application_4)
   end
-
+  #User story 12
   it 'displays all shelters in reverse alphabetical order by name' do
     visit '/admin/shelters'
 
@@ -33,11 +33,13 @@ RSpec.describe 'the admin shelters index' do
     expect(@shelter_2.name).to_not appear_before(@shelter_1.name)
     expect(@shelter_3.name).to_not appear_before(@shelter_2.name)
   end
-
+  #User story 13
   it 'displays all shelters with pending applications' do
+    visit '/admin/shelters'
+
     within("#pending_applications") do
       expect(page).to have_content(@shelter_1.name)
-      expect(page).to have_content(@shelter_3.name)
+      expect(page).to have_content(@shelter_2.name)
     end
   end
 end

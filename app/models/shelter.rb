@@ -16,14 +16,12 @@ class Shelter < ApplicationRecord
       .order("pets_count DESC")
   end
 
-  def self.order_alphabetical
+  def self.order_desc_by_name
     find_by_sql("SELECT * FROM shelters ORDER BY shelters.name DESC")
   end
 
-  # How to do it in ActiveRecord - join().where???
   def self.pending_applications
-    require "pry"; binding.pry
-    # Playlist.select('playlists.name as p_name, artists.name as a_name').joins(songs: [:artist]).where("a_name = ?", 'Caamp")
+    Shelter.joins(pets: :applications).where('applications.status': 'Pending').distinct
   end
 
   def pet_count

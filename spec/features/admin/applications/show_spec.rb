@@ -25,7 +25,7 @@ RSpec.describe 'the admin applications show' do
     PetApplication.create!(pet: @pet_1, application: @application_4)
     PetApplication.create!(pet: @pet_3, application: @application_4)
   end
-
+  #User story 14
   it 'displays a button to approve the specific pet' do
     visit "/admin/applications/#{@application_1.id}"
 
@@ -34,11 +34,60 @@ RSpec.describe 'the admin applications show' do
     end
 
     expect(current_path).to eq("/admin/applications/#{@application_1.id}")
-save_and_open_page
+
     within("#approve-#{@pet_1.id}") do
-      # expect(page).to_not have_content('Approve Pet')
+      expect(page).to_not have_button('Approve Pet')
       expect(page).to have_content('Pet Approved')
     end
+  end
+  #User story 15
+  it 'displays a button to reject the specific pet' do
+    visit "/admin/applications/#{@application_4.id}"
+
+    within("#approve-#{@pet_3.id}") do
+      click_button 'Reject Pet'
+    end
+
+    expect(current_path).to eq("/admin/applications/#{@application_4.id}")
+
+    within("#approve-#{@pet_3.id}") do
+      expect(page).to_not have_button('Reject Pet')
+      expect(page).to have_content('Pet Rejected')
+    end
+  end
+  #User story 16
+  it 'approve or reject for a pet do not affect other applications' do
+    visit "/admin/applications/#{@application_1.id}"
+
+    within("#approve-#{@pet_1.id}") do
+      click_button 'Approve Pet'
+    end
+
+    within("#approve-#{@pet_1.id}") do
+      expect(page).to_not have_button('Approve Pet')
+      expect(page).to have_content('Pet Approved')
+    end
+
+    visit "/admin/applications/#{@application_4.id}"
+
+    within("#approve-#{@pet_1.id}") do
+      expect(page).to have_button('Approve Pet')
+    end
+  end
+ #User story 17
+  xit 'updates application status to "Approved" once all pets are approved' do
+    visit "/admin/applications/#{@application_1.id}"
+
+    within("#approve-#{@pet_1.id}") do
+      click_button 'Approve Pet'
+    end
+
+    within("#approve-#{@pet_2.id}") do
+      click_button 'Approve Pet'
+    end
+
+    expect(current_path).to eq("/admin/applications/#{@application_1.id}")
+    expect(page).to have_content("Application Status: Approved")
   end
 
 end

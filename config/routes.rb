@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get '/veterinary_offices/:veterinary_office_id/veterinarians/new', to: 'veterinarians#new'
   post '/veterinary_offices/:veterinary_office_id/veterinarians', to: 'veterinarians#create'
 
-  # get '/applications', to: 'applications#index'
+  get '/applications', to: 'applications#index'
   get '/applications/new', to: 'applications#new'
   get '/applications/:id', to: 'applications#show'
   post '/applications', to: 'applications#create'
@@ -46,7 +46,6 @@ Rails.application.routes.draw do
   get '/admin/shelters', to: 'admin_shelters#index'
 
   get '/admin/applications/:app_id', to: 'admin_applications#show'
-  #??? not sure about this route
   patch '/admin/applications/:app_id', to: 'pet_applications#update'
 
 end

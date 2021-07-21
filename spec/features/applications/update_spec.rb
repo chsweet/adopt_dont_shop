@@ -55,5 +55,4 @@ RSpec.describe 'the applications updates' do
     expect(page).to have_content("Description: I will be the best pet parent")
     expect(page).to have_content("Application Status: Pending")
   end
-
 end
