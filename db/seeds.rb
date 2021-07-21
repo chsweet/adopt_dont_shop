@@ -27,11 +27,11 @@ Shelter.destroy_all
 @pet_9 = Pet.create!(adoptable: true, age: 1, breed: 'Australian Shepard', name: 'Mo', shelter_id: @shelter_4.id)
 
 #applications
-@application_1 = Application.create!(name: 'Isabella', address: '1234 Drive', city: 'Denver', state: 'CO', zip_code: 80221, description: 'I want a friend', status: 'In Progress')
-@application_2 = Application.create!(name: 'Molly', address: '6831 Drive Dr', city: 'Aurora', state: 'CO', zip_code: 80023, description: 'My other dog wants a friend', status: 'Approved')
-@application_3 = Application.create!(name: 'Fiona', address: '1215 Harshman', city: 'Rawlins', state: 'WY', zip_code: 82301, description: 'I want a puppy', status: 'In Progress')
-@application_4 = Application.create!(name: 'Felipe', address: '6835 Carrick Dr', city: 'Fort Collins', state: 'CO', zip_code: 80525, description: 'I would be the best dog parent!', status: 'Pending')
-@application_5 = Application.create!(name: 'Bailey', address: '2323 Platte Street', city: 'Saratoga', state: 'WY', zip_code: 82311, description: 'I want a puppy', status: 'Pending')
+@application_1 = Application.create!(name: 'Isabella', address: '1234 Drive', city: 'Denver', state: 'CO', zip_code: 80221, status: 'In Progress')
+@application_2 = Application.create!(name: 'Molly', address: '6831 Drive Dr', city: 'Aurora', state: 'CO', zip_code: 80023, status: 'In Progress')
+@application_3 = Application.create!(name: 'Fiona', address: '1215 Harshman', city: 'Rawlins', state: 'WY', zip_code: 82301, status: 'In Progress')
+@application_4 = Application.create!(name: 'Felipe', address: '6835 Carrick Dr', city: 'Fort Collins', state: 'CO', zip_code: 80525, status: 'In Progress')
+@application_5 = Application.create!(name: 'Bailey', address: '2323 Platte Street', city: 'Saratoga', state: 'WY', zip_code: 82311, status: 'In Progress')
 
 #pet_applications
 PetApplication.create!(pet: @pet_2, application: @application_1)

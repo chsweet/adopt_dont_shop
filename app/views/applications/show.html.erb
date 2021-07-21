@@ -20,7 +20,9 @@
 <h4>Application Status: <%= @application.status %></h4>
 <h4>Pet(s):</h4>
 <% @application.pets.each do |pet| %>
-  <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+  <section id="approve-<%= pet.id %>">
+    <%= link_to "#{pet.name}", "/pets/#{pet.id}" %>
+  </section>
 <% end %>
 <br>
 <br>
