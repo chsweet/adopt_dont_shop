@@ -25,7 +25,7 @@ RSpec.describe 'the admin applications show' do
     PetApplication.create!(pet: @pet_1, application: @application_4)
     PetApplication.create!(pet: @pet_3, application: @application_4)
   end
-
+  #User story 14
   it 'displays a button to approve the specific pet' do
     visit "/admin/applications/#{@application_1.id}"
 
@@ -40,8 +40,8 @@ RSpec.describe 'the admin applications show' do
       expect(page).to have_content('Pet Approved')
     end
   end
-
-  it 'displays a button to approve the specific pet' do
+  #User story 15
+  it 'displays a button to reject the specific pet' do
     visit "/admin/applications/#{@application_4.id}"
 
     within("#approve-#{@pet_3.id}") do
@@ -55,7 +55,7 @@ RSpec.describe 'the admin applications show' do
       expect(page).to have_content('Pet Rejected')
     end
   end
-
+  #User story 16
   it 'approve or reject for a pet do not affect other applications' do
     visit "/admin/applications/#{@application_1.id}"
 
@@ -74,7 +74,7 @@ RSpec.describe 'the admin applications show' do
       expect(page).to have_button('Approve Pet')
     end
   end
-
+ #User story 17
   it 'updates application status to "Approved" once all pets are approved' do
     visit "/admin/applications/#{@application_1.id}"
 
@@ -87,7 +87,6 @@ RSpec.describe 'the admin applications show' do
     end
 
     expect(current_path).to eq("/admin/applications/#{@application_1.id}")
-    expect(@application_1.status).to eq("Approved")
     expect(page).to have_content("Application Status: Approved")
   end
 
