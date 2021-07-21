@@ -20,7 +20,7 @@ RSpec.describe 'the applications show' do
 
   it 'displays the applicant with all attributes and pet names' do
     visit "/applications/#{@application_1.id}"
-    save_and_open_page
+    
     expect(page).to have_content("#{@application_1.name}")
     expect(page).to have_content("Address: #{@application_1.address} #{@application_1.city}, #{@application_1.state} #{@application_1.zip_code}")
 

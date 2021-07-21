@@ -23,7 +23,7 @@ RSpec.describe PetApplication do
     @application_3 = Application.create!(name: 'Mona', address: '7230 Chipper Ln', city: 'Loveland', state: 'CO', zip_code: 80232, description: 'I love dog!!', status: 'Pending')
     @application_4 = Application.create!(name: 'Sarah', address: '8356 Drive Dr', city: 'Denver', state: 'CO', zip_code: 80203, description: 'I will take the pup on lots of adventures', status: 'Pending')
 
-    @pet_app_1 = PetApplication.create!(pet: @pet_1, application: @application_1)
+    @pet_app_1 = PetApplication.create!(pet: @pet_1, application: @application_1, status: 'pending')
     @pet_app_2 = PetApplication.create!(pet: @pet_2, application: @application_1)
     @pet_app_3 = PetApplication.create!(pet: @pet_4, application: @application_2)
     @pet_app_4 = PetApplication.create!(pet: @pet_2, application: @application_3)
@@ -33,8 +33,8 @@ RSpec.describe PetApplication do
 
   describe 'class methods' do
     describe '::find_pet_application' do
-      it 'returns the pet application' do
-        expect(PetApplication.find_pet_application(@pet_2.id, @application_1.id)).to eq(@pet_app_2)
+      xit 'returns the pet application' do
+        expect(PetApplication.pet_app_approved?(@pet_app_1.id)).to eq(false)
       end
     end
   end
