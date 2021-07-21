@@ -34,11 +34,7 @@ RSpec.describe 'application creation' do
 
       expect(current_path).to eq("/applications/#{@application.id}")
       expect(page).to have_content("Ciara")
-      expect(page).to have_content("Address: 6831 39th Street")
-      expect(page).to have_content("City: Denver")
-      expect(page).to have_content("State: CO")
-      expect(page).to have_content("Zip Code: 80223")
-
+      expect(page).to have_content("Address: 6831 39th Street Denver, CO 80223")
       expect(page).to have_content("Application Status: In Progress")
     end
   end

@@ -20,12 +20,10 @@ RSpec.describe 'the applications show' do
 
   it 'displays the applicant with all attributes and pet names' do
     visit "/applications/#{@application_1.id}"
-
+    save_and_open_page
     expect(page).to have_content("#{@application_1.name}")
-    expect(page).to have_content("Address: #{@application_1.address}")
-    expect(page).to have_content("City: #{@application_1.city}")
-    expect(page).to have_content("State: #{@application_1.state}")
-    expect(page).to have_content("Zip Code: #{@application_1.zip_code}")
+    expect(page).to have_content("Address: #{@application_1.address} #{@application_1.city}, #{@application_1.state} #{@application_1.zip_code}")
+
     expect(page).to have_content("Description: #{@application_1.description}")
     expect(page).to_not have_content("#{@pet_1.name}")
     find_link("#{@pet_2.name}")
@@ -68,7 +66,7 @@ RSpec.describe 'the applications show' do
 
     fill_in 'Search by pet name:', with: "bear"
     click_on("Search")
-    save_and_open_page
+
     expect(current_path).to eq("/applications/#{@application_1.id}")
     expect(page).to have_content(@pet_5.name)
     expect(page).to have_content(@pet_6.name)
