@@ -260,6 +260,7 @@ And instead I see an indicator next to the pet that they have been rejected
 ```
 
 ```
+[X] done
 User story 16
 Approved/Rejected Pets on one Application do not affect other Applications
 

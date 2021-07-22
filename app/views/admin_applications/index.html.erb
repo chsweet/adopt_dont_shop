@@ -1,0 +1,8 @@
+<h1>All Applications</h1>
+
+<% @applications.each do |application| %>
+  <section id="<%= application.id %>-show">
+    <%= application.name %>
+    <%= link_to "Application Page", "/admin/applications/#{application.id}" %>
+  </section>
+<% end %>
